@@ -1,4 +1,5 @@
 package com.example.randomnumber
+import android.media.MediaPlayer
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val mp: MediaPlayer
 
         val etiqueta: TextView = findViewById(R.id.etiqueta) as TextView
         val down: Button = findViewById(R.id.down) as Button
@@ -24,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         val generate: Button = findViewById(R.id.generate) as Button
 
         val correcto:Button = findViewById(R.id.correcto)as Button
-
+        mp=MediaPlayer.create(this,R.raw.posty)
         generate.setOnClickListener{
 
                 num = Random.nextInt(0,100)
@@ -53,12 +55,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         correcto.setOnClickListener{
+            mp.start()
             up.isEnabled=false
             down.isEnabled = false
             num = 0
             etiqueta.setText("$num")
             auxa = 100
             auxb=0
+
         }
 
 
